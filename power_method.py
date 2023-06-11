@@ -1,10 +1,6 @@
 import numpy as np
 
 
-def error(x):
-    return np.linalg.norm(x)
-
-
 def power_method():
     ctr = 1
     x_prev = x_0
@@ -16,7 +12,6 @@ def power_method():
         ctr += 1
         x_prev = x_next
         x_next = A @ x_prev / np.linalg.norm(A @ x_prev)
-
         lam = (x_next.T @ A @ x_next) / (x_next.T @ x_next)
 
         if np.abs(lam - lam_prev) < eps:
@@ -38,8 +33,9 @@ if __name__ == "__main__":
     #     [2, 3]
     # ])
     # x_0 = np.array([[1, 1]]).T
-    eps = 1e-3
-    dim = 30
+    np.random.seed(1)
+    eps = 1e-6
+    dim = 3
     A = np.random.randint(0, 10, (dim, dim))
     x_0 = np.random.randint(0, 10, (1, dim)).T
     print("A:\n", A)
