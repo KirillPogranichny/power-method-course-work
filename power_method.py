@@ -12,7 +12,7 @@ def power_method():
     print(f"Итерация {ctr}:\n x_{ctr}:\n {x_next}\n ||x_{ctr}|| = {np.linalg.norm(x_next)}")
     lam_prev, lam = 0, 0
 
-    while error(x_next - x_prev) >= eps:
+    while True:
         ctr += 1
         x_prev = x_next
         x_next = A @ x_prev / np.linalg.norm(A @ x_prev)
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     # ])
     # x_0 = np.array([[1, 1]]).T
     eps = 1e-3
-    dim = 20
+    dim = 30
     A = np.random.randint(0, 10, (dim, dim))
     x_0 = np.random.randint(0, 10, (1, dim)).T
     print("A:\n", A)
