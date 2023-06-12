@@ -5,7 +5,7 @@ def power_method():
     ctr = 1
     x_prev = x_0
     x_next = A @ x_prev / np.linalg.norm(A @ x_prev)
-    print(f"Итерация {ctr}:\n x_{ctr}:\n {x_next}\n ||x_{ctr}|| = {np.linalg.norm(x_next)}")
+    print(f"Итерация {ctr}:\n x_{ctr}:\n {x_next}")
     lam_prev, lam = 0, 0
 
     while True:
@@ -22,22 +22,22 @@ def power_method():
             break
 
         lam_prev = lam
-        print(f"Итерация {ctr}:\n x_{ctr}:\n {x_next}\n ||x_{ctr}|| = {np.linalg.norm(x_next)}")
+        print(f"Итерация {ctr}:\n x_{ctr}:\n {x_next}")
 
     return ctr, x_prev, lam_prev
 
 
 if __name__ == "__main__":
-    # A = np.array([
-    #     [0, 2],
-    #     [2, 3]
-    # ])
-    # x_0 = np.array([[1, 1]]).T
-    np.random.seed(1)
+    A = np.array([
+        [12, 17, 8, 10, 10, 2],
+        [15, 9, 3, 10, 4, 19],
+        [10, 3, 10, 4, 15, 18],
+        [13, 16, 0, 2, 0, 15],
+        [9, 11, 5, 3, 1, 2],
+        [9, 14, 17, 8, 15, 3]
+    ])
+    x_0 = np.array([[5, 1, 10, 5, 12, 6]]).T
     eps = 1e-6
-    dim = 3
-    A = np.random.randint(0, 10, (dim, dim))
-    x_0 = np.random.randint(0, 10, (1, dim)).T
     print("A:\n", A)
     print("x_0:\n", x_0, "\n")
 
