@@ -8,6 +8,7 @@ def power_method():
     x_next = A @ x_prev / np.linalg.norm(A @ x_prev)
     print(f"Итерация {ctr}:\n x_{ctr}:\n {x_next}")
     lam_prev, lam = 0, 0
+    x_prev = x_next
 
     while True:
         ctr += 1
