@@ -1,4 +1,5 @@
 import numpy as np
+from datetime import datetime
 
 
 def power_method():
@@ -17,9 +18,9 @@ def power_method():
         x_prev = x_prev + alpha * (x_next - x_prev)
 
         if np.abs(lam - lam_prev) > accelerated_eps_min:
-            alpha += 0.035
+            alpha += 0.09
         elif np.abs(lam - lam_prev) < accelerated_eps_max:
-            alpha -= 0.035
+            alpha -= 0.09
 
         if np.abs(lam - lam_prev) < eps:
             print(f"На {ctr} итерации условие |lam - lam_prev| < eps перестает выполняться")
@@ -35,18 +36,16 @@ def power_method():
 
 
 if __name__ == "__main__":
-    A = np.array([
-        [12, 17, 8, 10, 10, 2],
-        [15, 9, 3, 10, 4, 19],
-        [10, 3, 10, 4, 15, 18],
-        [13, 16, 0, 2, 0, 15],
-        [9, 11, 5, 3, 1, 2],
-        [9, 14, 17, 8, 15, 3]
-    ])
-    x_0 = np.array([[5, 1, 10, 5, 12, 6]]).T
-    accelerated_eps_min = 1e-4
-    accelerated_eps_max = 1e-1
+    start_time = datetime.now()
+    SEED = 1
+    dim = 3
+    np.random.seed(SEED)
     eps = 1e-6
+    accelerated_eps_min = 1e-2
+    accelerated_eps_max = 1e-3
+
+    A = np.random.randint(0, 100, (dim, dim))
+    x_0 = np.random.randint(0, 100, (1, dim)).T
     print("A:\n", A)
     print("x_0:\n", x_0, "\n")
 
@@ -63,3 +62,5 @@ if __name__ == "__main__":
         print(f"\nДля нашего набора данных потребовалось {ctr} итераций\n"
               f"Собственный вектор x_{ctr}:\n {x}\n"
               f"Максимальное по модулю собственное значение: {lam[0][0]}")
+
+    print(f"\nВремя работы алгоритма: {datetime.now() - start_time}")

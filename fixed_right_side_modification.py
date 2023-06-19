@@ -1,4 +1,5 @@
 import numpy as np
+from datetime import datetime
 
 
 def power_method():
@@ -23,17 +24,15 @@ def power_method():
 
 
 if __name__ == "__main__":
-    A = np.array([
-        [12, 17, 8, 10, 10, 2],
-        [15, 9, 3, 10, 4, 19],
-        [10, 3, 10, 4, 15, 18],
-        [13, 16, 0, 2, 0, 15],
-        [9, 11, 5, 3, 1, 2],
-        [9, 14, 17, 8, 15, 3]
-    ])
-    x_0 = np.array([[1, 1, 1, 1, 1, 1]])
-    E = np.identity(A.shape[0])
+    start_time = datetime.now()
+    SEED = 1
+    dim = 3
+    np.random.seed(SEED)
     eps = 1e-6
+
+    A = np.random.randint(0, 100, (dim, dim))
+    x_0 = np.random.randint(0, 100, (1, dim))
+    E = np.identity(dim)
     print("A:\n", A)
     print("E:\n", E)
     print("x_0:\n", x_0.T, "\n")
@@ -51,3 +50,5 @@ if __name__ == "__main__":
         print(f"\nДля нашего набора данных потребовалось {ctr} итераций\n"
               f"Собственный вектор x_{ctr}:\n {x.T}\n"
               f"Максимальное по модулю собственное значение: {lam[0][0]}")
+
+    print(f"\nВремя работы алгоритма: {datetime.now() - start_time}")
