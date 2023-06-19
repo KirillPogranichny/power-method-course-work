@@ -1,9 +1,9 @@
 import numpy as np
 
 
-SEED = 1
+SEED = 220144
 np.random.seed(SEED)
-dim = 3
+dim = 10
 
 while True:
     A = np.random.randint(0, 100, (dim, dim))
@@ -17,4 +17,4 @@ while True:
 print("A:\n", A)
 # print("\nx_0:\n", x_0, "\n")
 
-print(np.linalg.eigvals(A))
+print(f"λ = {np.linalg.eigvals(A)}")
